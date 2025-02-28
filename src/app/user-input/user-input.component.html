@@ -1,45 +1,117 @@
-<form (ngSubmit)="onSubmit()">
-  <div class="input-group">
-    <p>
-      <label for="initial-investment">Investissement initial (€)</label>
-      <input
-        id="initial-investment"
-        name="initial-investment"
-        type="number"
-        [(ngModel)]="enteredInititialInvestment"
-      />
-    </p>
-    <p>
-      <label for="annual-investment">Investissement annuel (€)</label>
-      <input
-        id="annual-investment"
-        name="annual-investment"
-        type="number"
-        [(ngModel)]="enteredAnnualInvestment"
-      />
-    </p>
+<div class="container">
+  <div class="card">
+    @if (bitcoinPrice() > 0) {
+    <div class="bitcoin-price-card">
+      <div class="bitcoin-price-header">
+        <div class="bitcoin-icon">₿</div>
+        <div class="bitcoin-info">
+          <h2>Prix actuel du Bitcoin</h2>
+          <div class="bitcoin-value">
+            {{ bitcoinPrice() | currency : "EUR" : "symbol" : "1.2-2" }}
+          </div>
+        </div>
+      </div>
+      <div class="bitcoin-meta">
+        <div class="update-info">
+          <span class="update-label">Dernière mise à jour:</span>
+          <span class="update-time">{{
+            lastUpdated() | date : "HH:mm:ss"
+          }}</span>
+          <button
+            type="button"
+            class="refresh-button"
+            (click)="refreshPrice()"
+            [disabled]="isLoading()"
+            title="Actualiser le prix"
+          >
+            @if (!isLoading()) {
+            <span>🔄</span>
+            } @else {
+            <span>⏳</span>
+            }
+          </button>
+        </div>
+        @if (error()) {
+        <div class="error-message">{{ error() }}</div>
+        }
+      </div>
+    </div>
+    }
+
+    <div class="investment-form">
+      <h2 class="form-title">Paramètres d'investissement</h2>
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="initial-investment">Investissement initial (€)</label>
+            <div class="input-with-icon">
+              <span class="input-icon">€</span>
+              <input
+                id="initial-investment"
+                name="initial-investment"
+                type="number"
+                [(ngModel)]="enteredInititialInvestment"
+                min="0"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="annual-investment">Investissement annuel (€)</label>
+            <div class="input-with-icon">
+              <span class="input-icon">€</span>
+              <input
+                id="annual-investment"
+                name="annual-investment"
+                type="number"
+                [(ngModel)]="enteredAnnualInvestment"
+                min="0"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="expected-investment"
+              >Croissance annuelle estimée (%)</label
+            >
+            <div class="input-with-icon">
+              <span class="input-icon">%</span>
+              <input
+                id="expected-investment"
+                name="expected-investment"
+                type="number"
+                [(ngModel)]="enteredExpectedReturn"
+                min="0"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="duration">Durée (années)</label>
+            <div class="input-with-icon">
+              <span class="input-icon">Y</span>
+              <input
+                id="duration"
+                name="duration"
+                type="number"
+                [(ngModel)]="enteredDuration"
+                min="1"
+                max="50"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="calculate-btn">
+            <span class="btn-icon">₿</span>
+            Calculer
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="input-group">
-    <p>
-      <label for="expected-investment">Rendement attendu (%)</label>
-      <input
-        id="expected-investment"
-        name="expected-investment"
-        type="number"
-        [(ngModel)]="enteredExpectedReturn"
-      />
-    </p>
-    <p>
-      <label for="duration">Durée (années)</label>
-      <input
-        id="duration"
-        name="duration"
-        type="number"
-        [(ngModel)]="enteredDuration"
-      />
-    </p>
-  </div>
-  <p>
-    <button>Calculer</button>
-  </p>
-</form>
+</div>
