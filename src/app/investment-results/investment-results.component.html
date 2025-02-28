@@ -1,32 +1,87 @@
-@if (!results()) {
-<p class="center">Veuillez saisir des valeurs et appuyer sur "Calculer".</p>
-} @else {
-<table>
-  <thead>
-    <tr>
-      <th>Année</th>
-      <th>Valeur d'investissement</th>
-      <th>Intérêt (Année)</th>
-      <th>Intérêt total</th>
-      <th>Capital investi</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(result of results(); track result.year) {
-    <tr>
-      <td>{{ result.year }}</td>
-      <td>
-        {{ result.valueEndOfYear | currency : "EUR" : "symbol" : "1.2-2" }}
-      </td>
-      <td>{{ result.interest | currency : "EUR" : "symbol" : "1.2-2" }}</td>
-      <td>
-        {{ result.totalInterest | currency : "EUR" : "symbol" : "1.2-2" }}
-      </td>
-      <td>
-        {{ result.totalAmountInvested | currency : "EUR" : "symbol" : "1.2-2" }}
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
-}
+<div class="container">
+  @if (!results()) {
+  <div class="empty-state">
+    <div class="empty-icon">📈</div>
+    <p>
+      Veuillez saisir des valeurs et appuyer sur "Calculer" pour voir les
+      résultats
+    </p>
+  </div>
+  } @else {
+  <div class="card results-card">
+    <h2 class="results-title">Résultats de la simulation</h2>
+
+    <div class="results-summary">
+      <div class="summary-item">
+        <div class="summary-label">Investissement total</div>
+        <div class="summary-value">
+          {{ getTotalInvestment() | currency : "EUR" : "symbol" : "1.2-2" }}
+        </div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">Valeur finale</div>
+        <div class="summary-value">
+          {{ getFinalValue() | currency : "EUR" : "symbol" : "1.2-2" }}
+        </div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">Gain total</div>
+        <div
+          class="summary-value"
+          [class]="isPositive(getTotalGain()) ? 'positive' : 'negative'"
+        >
+          {{ getTotalGain() | currency : "EUR" : "symbol" : "1.2-2" }}
+        </div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">Bitcoin accumulé</div>
+        <div class="summary-value">
+          {{ getFinalBitcoinAmount() | number : "1.8-8" }} BTC
+        </div>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Année</th>
+            <th>Prix Bitcoin (€)</th>
+            <th>Quantité Bitcoin</th>
+            <th>Valeur totale (€)</th>
+            <th>Gain/Perte</th>
+            <th>Capital investi</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(result of results(); track result.year) {
+          <tr>
+            <td>{{ result.year }}</td>
+            <td>
+              {{ result.bitcoinPrice | currency : "EUR" : "symbol" : "1.2-2" }}
+            </td>
+            <td>{{ result.bitcoinAmount | number : "1.8-8" }} BTC</td>
+            <td>
+              {{
+                result.valueEndOfYear | currency : "EUR" : "symbol" : "1.2-2"
+              }}
+            </td>
+            <td
+              [class]="isPositive(result.totalGain) ? 'positive' : 'negative'"
+            >
+              {{ result.totalGain | currency : "EUR" : "symbol" : "1.2-2" }}
+            </td>
+            <td>
+              {{
+                result.totalAmountInvested
+                  | currency : "EUR" : "symbol" : "1.2-2"
+              }}
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  }
+</div>
