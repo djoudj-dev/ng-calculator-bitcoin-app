@@ -1,5 +1,5 @@
 table {
-  max-width: 50rem;
+  max-width: 70rem;
   margin: 2rem auto;
   padding: 1rem;
   table-layout: fixed;
@@ -8,12 +8,12 @@ table {
 }
 
 table thead {
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   color: #83e6c0;
 }
 
 table tbody {
   font-family: "Roboto Condensed", sans-serif;
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: #c2e9e0;
 }
