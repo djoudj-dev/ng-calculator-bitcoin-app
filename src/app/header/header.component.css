@@ -1,15 +1,57 @@
-header {
+.header {
+  background-color: var(--color-secondary);
+  color: white;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+.header-content {
   text-align: center;
-  margin: 3rem auto;
 }
 
-header img {
-  width: 7rem;
-  height: 7rem;
-  object-fit: contain;
-  background-color: transparent;
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
-header h1 {
-  font-size: 2.2rem;
+.logo img {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-right: 1rem;
+}
+
+.logo h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.highlight {
+  color: var(--color-primary);
+}
+
+.tagline {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    flex-direction: column;
+  }
+
+  .logo img {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .logo h1 {
+    font-size: 1.5rem;
+  }
+
+  .tagline {
+    font-size: 1rem;
+  }
 }
