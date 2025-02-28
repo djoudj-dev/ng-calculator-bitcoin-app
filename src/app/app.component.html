@@ -1,3 +1,15 @@
-<app-header />
-<app-user-input />
-<app-investment-results />
+<div class="app-wrapper">
+  <app-header />
+  <main>
+    <app-user-input />
+    <app-investment-results />
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <p>
+        © {{ currentYear }} Calculateur d'investissement Bitcoin | Les résultats
+        sont des estimations et ne constituent pas des conseils financiers
+      </p>
+    </div>
+  </footer>
+</div>
