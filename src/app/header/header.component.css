@@ -42,7 +42,7 @@
     flex-direction: column;
   }
   input {
-    color: #f7931a; /* Texte blanc pour contraste sur fond sombre */
+    color: #f7931a;
   }
 
   .logo img {

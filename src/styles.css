@@ -49,6 +49,12 @@ body {
   transition: var(--transition);
 }
 
+input {
+  color: #222; /* Texte foncé pour visibilité sur fond clair */
+  background-color: #fff;
+}
+}
+
 .card:hover {
   box-shadow: var(--shadow-lg);
 }
