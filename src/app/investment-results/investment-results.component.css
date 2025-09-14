@@ -78,14 +78,14 @@ table tbody {
 
 .summary-label {
   font-size: 0.9rem;
-  color: var(--color-text-light);
+  color: var(--color-secondary);
   margin-bottom: 0.5rem;
 }
 
 .summary-value {
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--color-text);
+  color: var(--color-secondary);
 }
 
 .table-container {
@@ -108,7 +108,7 @@ table tbody {
 .results-table th {
   background-color: #f9f9f9;
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-secondary);
   position: sticky;
   top: 0;
 }
