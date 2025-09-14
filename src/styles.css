@@ -50,9 +50,8 @@ body {
 }
 
 input {
-  color: #222; /* Texte foncé pour visibilité sur fond clair */
+  color: #222;
   background-color: #fff;
-}
 }
 
 .card:hover {
