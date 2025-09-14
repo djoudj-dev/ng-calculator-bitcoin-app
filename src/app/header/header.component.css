@@ -41,6 +41,9 @@
   .logo {
     flex-direction: column;
   }
+  input {
+    color: #f7931a; /* Texte blanc pour contraste sur fond sombre */
+  }
 
   .logo img {
     margin-right: 0;
