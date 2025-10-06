@@ -4,6 +4,8 @@
 
 Une application web moderne pour simuler et projeter les rendements potentiels des investissements en Bitcoin sur plusieurs années.
 
+https://bitcoin.nedellec-julien.fr/
+
 ## 🇫🇷 Présentation du Projet
 
 ### Objectif
